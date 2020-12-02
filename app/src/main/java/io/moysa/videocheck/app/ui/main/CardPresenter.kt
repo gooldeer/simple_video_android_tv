@@ -1,4 +1,4 @@
-package io.moysa.videocheck
+package io.moysa.videocheck.app.ui.main
 
 import android.graphics.drawable.Drawable
 import androidx.leanback.widget.ImageCardView
@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.ViewGroup
 
 import com.bumptech.glide.Glide
+import io.moysa.videocheck.Movie
+import io.moysa.videocheck.R
 import kotlin.properties.Delegates
 
 /**
@@ -22,9 +24,15 @@ class CardPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup): Presenter.ViewHolder {
         Log.d(TAG, "onCreateViewHolder")
 
-        sDefaultBackgroundColor = ContextCompat.getColor(parent.context, R.color.default_background)
-        sSelectedBackgroundColor = ContextCompat.getColor(parent.context, R.color.selected_background)
-        mDefaultCardImage = ContextCompat.getDrawable(parent.context, R.drawable.movie)
+        sDefaultBackgroundColor = ContextCompat.getColor(parent.context,
+            R.color.default_background
+        )
+        sSelectedBackgroundColor = ContextCompat.getColor(parent.context,
+            R.color.selected_background
+        )
+        mDefaultCardImage = ContextCompat.getDrawable(parent.context,
+            R.drawable.movie
+        )
 
         val cardView = object : ImageCardView(parent.context) {
             override fun setSelected(selected: Boolean) {
@@ -47,7 +55,10 @@ class CardPresenter : Presenter() {
         if (movie.cardImageUrl != null) {
             cardView.titleText = movie.title
             cardView.contentText = movie.studio
-            cardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT)
+            cardView.setMainImageDimensions(
+                CARD_WIDTH,
+                CARD_HEIGHT
+            )
             Glide.with(viewHolder.view.context)
                     .load(movie.cardImageUrl)
                     .centerCrop()

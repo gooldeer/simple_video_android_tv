@@ -1,4 +1,4 @@
-package io.moysa.videocheck
+package io.moysa.videocheck.app.ui.main
 
 import java.util.Collections
 import java.util.Timer
@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.leanback.app.BackgroundManager
-import androidx.leanback.app.BrowseFragment
 import androidx.leanback.widget.ArrayObjectAdapter
 import androidx.leanback.widget.HeaderItem
 import androidx.leanback.widget.ImageCardView
@@ -36,6 +35,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
+import io.moysa.videocheck.*
+import io.moysa.videocheck.app.ui.main.error.BrowseErrorActivity
 
 /**
  * Loads a grid of cards with movies to browse.
@@ -80,13 +81,13 @@ class MainFragment : BrowseSupportFragment() {
     private fun setupUIElements() {
         title = getString(R.string.browse_title)
         // over title
-        headersState = BrowseFragment.HEADERS_ENABLED
+        headersState = HEADERS_ENABLED
         isHeadersTransitionOnBackEnabled = true
 
         // set fastLane (or headers) background color
-        brandColor = ContextCompat.getColor(context, R.color.fastlane_background)
+        brandColor = ContextCompat.getColor(context!!, R.color.fastlane_background)
         // set search icon color
-        searchAffordanceColor = ContextCompat.getColor(context, R.color.search_opaque)
+        searchAffordanceColor = ContextCompat.getColor(context!!, R.color.search_opaque)
     }
 
     private fun loadRows() {
@@ -142,11 +143,11 @@ class MainFragment : BrowseSupportFragment() {
                 intent.putExtra(DetailsActivity.MOVIE, item)
 
                 val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        activity,
+                        activity!!,
                         (itemViewHolder.view as ImageCardView).mainImageView,
                         DetailsActivity.SHARED_ELEMENT_NAME)
                         .toBundle()
-                activity.startActivity(intent, bundle)
+                activity!!.startActivity(intent, bundle)
             } else if (item is String) {
                 if (item.contains(getString(R.string.error_fragment))) {
                     val intent = Intent(context, BrowseErrorActivity::class.java)
@@ -204,7 +205,7 @@ class MainFragment : BrowseSupportFragment() {
             view.layoutParams = ViewGroup.LayoutParams(GRID_ITEM_WIDTH, GRID_ITEM_HEIGHT)
             view.isFocusable = true
             view.isFocusableInTouchMode = true
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.default_background))
+            view.setBackgroundColor(ContextCompat.getColor(context!!, R.color.default_background))
             view.setTextColor(Color.WHITE)
             view.gravity = Gravity.CENTER
             return Presenter.ViewHolder(view)

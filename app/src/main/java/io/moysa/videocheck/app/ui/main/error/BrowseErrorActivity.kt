@@ -1,6 +1,5 @@
-package io.moysa.videocheck
+package io.moysa.videocheck.app.ui.main.error
 
-import android.app.Activity
 import android.app.Fragment
 import android.os.Bundle
 import android.os.Handler
@@ -10,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import androidx.fragment.app.FragmentActivity
+import io.moysa.videocheck.R
 
 /**
  * BrowseErrorActivity shows how to use ErrorFragment.
  */
-class BrowseErrorActivity : Activity() {
+class BrowseErrorActivity : FragmentActivity() {
 
     private lateinit var mErrorFragment: ErrorFragment
     private lateinit var mSpinnerFragment: SpinnerFragment
@@ -33,7 +34,8 @@ class BrowseErrorActivity : Activity() {
                 .add(R.id.main_browse_fragment, mErrorFragment)
                 .commit()
 
-        mSpinnerFragment = SpinnerFragment()
+        mSpinnerFragment =
+            SpinnerFragment()
         fragmentManager
                 .beginTransaction()
                 .add(R.id.main_browse_fragment, mSpinnerFragment)
@@ -46,7 +48,9 @@ class BrowseErrorActivity : Activity() {
                     .remove(mSpinnerFragment)
                     .commit()
             mErrorFragment.setErrorContent()
-        }, TIMER_DELAY)
+        },
+            TIMER_DELAY
+        )
     }
 
     class SpinnerFragment : Fragment() {
@@ -54,7 +58,9 @@ class BrowseErrorActivity : Activity() {
                                   savedInstanceState: Bundle?): View? {
             val progressBar = ProgressBar(container?.context)
             if (container is FrameLayout) {
-                val layoutParams = FrameLayout.LayoutParams(SPINNER_WIDTH, SPINNER_HEIGHT, Gravity.CENTER)
+                val layoutParams = FrameLayout.LayoutParams(
+                    SPINNER_WIDTH,
+                    SPINNER_HEIGHT, Gravity.CENTER)
                 progressBar.layoutParams = layoutParams
             }
             return progressBar

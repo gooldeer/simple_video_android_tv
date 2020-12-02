@@ -1,15 +1,13 @@
 package io.moysa.videocheck.data.cache
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import io.moysa.videocheck.data.models.entity.CategoryEntity
 import io.moysa.videocheck.data.models.entity.CategoryWithVideosRelationEntity
 import io.moysa.videocheck.data.models.entity.VideoEntity
 
 @Dao
 interface VideosDao {
+    @Transaction
     @Query("SELECT * FROM CategoryEntity")
     suspend fun allVideos(): List<CategoryWithVideosRelationEntity>
     @Insert(onConflict = OnConflictStrategy.REPLACE)

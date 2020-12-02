@@ -13,13 +13,14 @@
         android:required="true" />
 
     <application
+        android:name=".app.VideoCheckApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.VideoCheck">
         <activity
-            android:name=".MainActivity"
+            android:name=".app.ui.main.MainActivity"
             android:banner="@drawable/app_icon_your_company"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
@@ -32,8 +33,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".PlaybackActivity" />
-        <activity android:name=".BrowseErrorActivity" />
+        <activity android:name=".app.ui.details.PlaybackActivity" />
+        <activity android:name=".app.ui.main.error.BrowseErrorActivity" />
     </application>
 
 </manifest>

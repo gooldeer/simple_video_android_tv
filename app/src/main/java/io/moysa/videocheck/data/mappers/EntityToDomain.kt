@@ -16,6 +16,7 @@ internal fun CategoryWithVideosRelationEntity.toDomain() : Category {
 internal fun VideoEntity.toDomain(): Video {
     return  Video(
         this.name,
-        this.url
+        this.url,
+        this.snapshotUrl
     )
 }

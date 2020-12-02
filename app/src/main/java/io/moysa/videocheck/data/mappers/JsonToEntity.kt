@@ -10,6 +10,7 @@ internal fun VideoResponse.toEntity(primaryKey: Int, categoryId: Int) : VideoEnt
         primaryKey,
         this.name,
         this.url,
+        this.snapshotUrl,
         categoryId
     )
 }

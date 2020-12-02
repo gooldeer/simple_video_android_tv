@@ -1,4 +1,4 @@
-package io.moysa.videocheck
+package io.moysa.videocheck.app.ui.details
 
 import android.net.Uri
 import android.os.Bundle
@@ -7,6 +7,8 @@ import androidx.leanback.app.VideoSupportFragmentGlueHost
 import androidx.leanback.media.MediaPlayerAdapter
 import androidx.leanback.media.PlaybackTransportControlGlue
 import androidx.leanback.widget.PlaybackControlsRow
+import io.moysa.videocheck.DetailsActivity
+import io.moysa.videocheck.Movie
 
 /** Handles video playback with media controls. */
 class PlaybackVideoFragment : VideoSupportFragment() {

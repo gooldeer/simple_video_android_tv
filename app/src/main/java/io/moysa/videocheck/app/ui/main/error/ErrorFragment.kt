@@ -1,8 +1,9 @@
-package io.moysa.videocheck
+package io.moysa.videocheck.app.ui.main.error
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import android.view.View
+import io.moysa.videocheck.R
 
 /**
  * This class demonstrates how to extend [androidx.leanback.app.ErrorFragment].
@@ -15,7 +16,9 @@ class ErrorFragment : androidx.leanback.app.ErrorFragment() {
     }
 
     internal fun setErrorContent() {
-        imageDrawable = ContextCompat.getDrawable(context, R.drawable.lb_ic_sad_cloud)
+        imageDrawable = ContextCompat.getDrawable(context,
+            R.drawable.lb_ic_sad_cloud
+        )
         message = resources.getString(R.string.error_fragment_message)
         setDefaultBackground(TRANSLUCENT)
 

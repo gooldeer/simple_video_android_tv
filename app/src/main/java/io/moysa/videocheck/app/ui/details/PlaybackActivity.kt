@@ -1,4 +1,4 @@
-package io.moysa.videocheck
+package io.moysa.videocheck.app.ui.details
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
