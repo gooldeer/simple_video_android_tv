@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Relation
 
-class CategoryWithVideosRelationEntity (
+data class CategoryWithVideosRelationEntity (
     @Embedded
     val category: CategoryEntity,
     @Relation(

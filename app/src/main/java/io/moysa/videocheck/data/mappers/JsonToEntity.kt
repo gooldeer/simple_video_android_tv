@@ -1,0 +1,22 @@
+package io.moysa.videocheck.data.mappers
+
+import io.moysa.videocheck.data.models.entity.CategoryEntity
+import io.moysa.videocheck.data.models.entity.VideoEntity
+import io.moysa.videocheck.data.models.response.CategoryResponse
+import io.moysa.videocheck.data.models.response.VideoResponse
+
+internal fun VideoResponse.toEntity(primaryKey: Int, categoryId: Int) : VideoEntity {
+    return VideoEntity(
+        primaryKey,
+        this.name,
+        this.url,
+        categoryId
+    )
+}
+
+internal fun CategoryResponse.toEntity(primaryKey: Int) : CategoryEntity {
+    return  CategoryEntity(
+        primaryKey,
+        this.name
+    )
+}
