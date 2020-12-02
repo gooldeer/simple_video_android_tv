@@ -24,4 +24,19 @@ interface VideosDao {
         saveCategories(cat)
         saveVideos(videos)
     }
+
+    @Query("SELECT COUNT(*) FROM CategoryEntity")
+    suspend fun isVideosCacheAvailable(): Int
+
+    @Query("DELETE FROM CategoryEntity")
+    suspend fun deleteAllCategories()
+
+    @Query("DELETE FROM VideoEntity")
+    suspend fun deleteAllVideos()
+
+    suspend fun clearDb() {
+        deleteAllVideos();
+        deleteAllCategories();
+    }
+
 }
