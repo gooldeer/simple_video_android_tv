@@ -5,9 +5,8 @@ import io.moysa.videocheck.data.models.entity.VideoEntity
 import io.moysa.videocheck.data.models.response.CategoryResponse
 import io.moysa.videocheck.data.models.response.VideoResponse
 
-internal fun VideoResponse.toEntity(primaryKey: Int, categoryId: Int) : VideoEntity {
+internal fun VideoResponse.toEntity(categoryId: Int) : VideoEntity {
     return VideoEntity(
-        primaryKey,
         this.name,
         this.url,
         this.snapshotUrl,

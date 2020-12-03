@@ -7,8 +7,7 @@ import androidx.leanback.app.VideoSupportFragmentGlueHost
 import androidx.leanback.media.MediaPlayerAdapter
 import androidx.leanback.media.PlaybackTransportControlGlue
 import androidx.leanback.widget.PlaybackControlsRow
-import io.moysa.videocheck.DetailsActivity
-import io.moysa.videocheck.Movie
+import io.moysa.videocheck.app.models.UiVideo
 
 /** Handles video playback with media controls. */
 class PlaybackVideoFragment : VideoSupportFragment() {
@@ -18,8 +17,8 @@ class PlaybackVideoFragment : VideoSupportFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val (_, title, description, _, _, videoUrl) =
-                activity?.intent?.getSerializableExtra(DetailsActivity.MOVIE) as Movie
+        val (name, url) =
+                activity?.intent?.getSerializableExtra(VIDEO) as UiVideo
 
         val glueHost = VideoSupportFragmentGlueHost(this@PlaybackVideoFragment)
         val playerAdapter = MediaPlayerAdapter(context)
@@ -27,15 +26,18 @@ class PlaybackVideoFragment : VideoSupportFragment() {
 
         mTransportControlGlue = PlaybackTransportControlGlue(getActivity(), playerAdapter)
         mTransportControlGlue.host = glueHost
-        mTransportControlGlue.title = title
-        mTransportControlGlue.subtitle = description
+        mTransportControlGlue.title = name
         mTransportControlGlue.playWhenPrepared()
 
-        playerAdapter.setDataSource(Uri.parse(videoUrl))
+        playerAdapter.setDataSource(Uri.parse(url))
     }
 
     override fun onPause() {
         super.onPause()
         mTransportControlGlue.pause()
+    }
+
+    companion object {
+        const val VIDEO = "Video"
     }
 }

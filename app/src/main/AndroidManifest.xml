@@ -32,7 +32,6 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailsActivity" />
         <activity android:name=".app.ui.details.PlaybackActivity" />
         <activity android:name=".app.ui.main.error.BrowseErrorActivity" />
     </application>

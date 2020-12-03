@@ -6,8 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "VideoEntity")
 data class VideoEntity (
-    @PrimaryKey
-    val uid: Int,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "url")
@@ -16,4 +14,7 @@ data class VideoEntity (
     val snapshotUrl: String,
     @ColumnInfo(name = "category_id")
     val categoryId: Int
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uid: Int = 0
+}

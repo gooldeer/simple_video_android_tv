@@ -23,7 +23,7 @@ class VideosDataSource constructor(
                 .fetchVideos()
                 .mapIndexed { ci, r ->  CategoryWithVideosRelationEntity(
                         r.toEntity(ci),
-                        r.videos.mapIndexed { vi, v -> v.toEntity(vi, ci) }
+                        r.videos.map { v -> v.toEntity(ci) }
                 )}
         dao.saveAllCategories(entities)
 

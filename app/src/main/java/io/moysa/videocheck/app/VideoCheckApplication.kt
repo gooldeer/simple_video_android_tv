@@ -1,7 +1,6 @@
 package io.moysa.videocheck.app
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Room
 import io.moysa.videocheck.data.api.HttpClient
 import io.moysa.videocheck.data.api.LoggingInterceptor
@@ -19,8 +18,11 @@ open class VideoCheckApplication: Application() {
     private lateinit var appDatabase: AppDatabase
     private lateinit var retrofit: Retrofit
 
+    val videosRepository : IVideosRepository get() = videosRepo
+
     override fun onCreate() {
         super.onCreate()
+        instance = this
 
         //Better for everything to be injected of course, will be redone with Koin
         //TODO inject with Koin
@@ -35,7 +37,7 @@ open class VideoCheckApplication: Application() {
 
     private fun initApi() {
         retrofit = Retrofit.Builder()
-                .baseUrl("https://some_base_url.com/")
+                .baseUrl("https://my-json-server.typicode.com/gooldeer/simple_android_tv_rest_api/")
                 .client(HttpClient.setupOkhttpClient(LoggingInterceptor.create()))
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
@@ -45,7 +47,15 @@ open class VideoCheckApplication: Application() {
         appDatabase = Room.databaseBuilder(
                 applicationContext,
                 AppDatabase::class.java,
+
                 "video_check_db.db"
         ).fallbackToDestructiveMigration().build()
+    }
+
+    //I know, bad stuff. Better to do DI
+    //TODO refactor with good DI like Koin on Dagger2
+    companion object {
+        lateinit var instance: VideoCheckApplication
+            private set
     }
 }
