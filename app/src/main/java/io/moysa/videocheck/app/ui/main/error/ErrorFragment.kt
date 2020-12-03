@@ -8,7 +8,7 @@ import io.moysa.videocheck.R
 /**
  * This class demonstrates how to extend [androidx.leanback.app.ErrorFragment].
  */
-class ErrorFragment : androidx.leanback.app.ErrorFragment() {
+class ErrorFragment : androidx.leanback.app.ErrorSupportFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +16,7 @@ class ErrorFragment : androidx.leanback.app.ErrorFragment() {
     }
 
     internal fun setErrorContent() {
-        imageDrawable = ContextCompat.getDrawable(context,
+        imageDrawable = ContextCompat.getDrawable(context!!,
             R.drawable.lb_ic_sad_cloud
         )
         message = resources.getString(R.string.error_fragment_message)
@@ -24,7 +24,7 @@ class ErrorFragment : androidx.leanback.app.ErrorFragment() {
 
         buttonText = resources.getString(R.string.dismiss_error)
         buttonClickListener = View.OnClickListener {
-            fragmentManager.beginTransaction().remove(this@ErrorFragment).commit()
+            fragmentManager!!.beginTransaction().remove(this@ErrorFragment).commit()
         }
     }
 

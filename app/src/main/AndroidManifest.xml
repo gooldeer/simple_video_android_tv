@@ -33,7 +33,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.ui.details.PlaybackActivity" />
-        <activity android:name=".app.ui.main.error.BrowseErrorActivity" />
     </application>
 
 </manifest>
